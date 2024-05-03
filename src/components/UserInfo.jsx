@@ -1,19 +1,16 @@
 import useLocalStorage from "../hooks/useLocalStorage";
 
-import Calender from "../components/Calender";
-import DropDown from "../components/DropDown";
-
 import { FaUserCircle } from "react-icons/fa";
 
 const UserInfo = () => {
+  
+    //  USER INFO INITIAL INFO
   const fallBackUserInfo = {
     name: "Sina",
     email: "example@gmail.com",
-    gender: "Select Gender",
-    birthDate: "2020-01-01",
   };
 
-  const [userData, setUserData] = useLocalStorage("user", fallBackUserInfo);
+  const [userData, setUserData] = useLocalStorage("userInfo", fallBackUserInfo);
 
   console.log(userData);
   return (
@@ -22,8 +19,6 @@ const UserInfo = () => {
       <FaUserCircle />
       <h2>{userData.name}</h2>
       <p>{userData.email}</p>
-      <DropDown defaultValue={userData.gender} values={["Male", "Female"]} />
-      <Calender defaultValue={userData.birthDate} />
     </div>
   );
 };
