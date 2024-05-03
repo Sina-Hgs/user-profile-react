@@ -1,15 +1,22 @@
-import Calender from "../components/Calender";
-import DropDown from "../components/DropDown";
+import { useNavigate } from "react-router-dom";
+
+import UserInfo from "../components/UserInfo";
 
 const ProfilePage = () => {
+  const Navigate = useNavigate();
   return (
-    <div>
-      <h1>Profile</h1>
-      <h2>Sina</h2>
-      <p>myemail@gmail.com</p>
-      <DropDown defaultValue={'Gender'} values={["Male", "Female"]} />
-      <Calender />
-    </div>
+    <>
+      <UserInfo />
+
+      <button
+        onClick={() => {
+          Navigate("./edit-profile");
+        }}
+      >
+        Edit Profile
+      </button>
+      <div>Logout</div>
+    </>
   );
 };
 

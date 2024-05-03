@@ -1,7 +1,7 @@
-const Calender = () => {
+const Calender = ({ defaultValue }) => {
   return (
     <>
-      <input type="date" />
+      <input type="date" defaultValue={defaultValue} />
     </>
   );
 };
