@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const DropDown = ({ defaultValue, selections }) => {
   const [options, setOptions] = useState([]);
-  const [selected, setSelected] = useState(defaultValue);
+  // const [selected, setSelected] = useState(defaultValue);
+
+  const [userGender, setUserGender] = useLocalStorage("userGender");
 
   useEffect(() => {
     setOptions([]);
@@ -22,7 +25,7 @@ const DropDown = ({ defaultValue, selections }) => {
         required
         defaultValue={0}
         onChange={(e) => {
-          setSelected(e.target.value);
+          setUserGender({ gender: e.target.value });
         }}
       >
         <option value={0} disabled hidden>
