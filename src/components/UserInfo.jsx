@@ -3,22 +3,21 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import { FaUserCircle } from "react-icons/fa";
 
 const UserInfo = () => {
-  
-    //  USER INFO INITIAL INFO
+  //  USER INFO INITIAL VALUES
   const fallBackUserInfo = {
     name: "Sina",
     email: "example@gmail.com",
   };
 
-  const [userData, setUserData] = useLocalStorage("userInfo", fallBackUserInfo);
+  const [userInfo, setUserInfo] = useLocalStorage("userInfo", fallBackUserInfo);
 
-  console.log(userData);
+  console.log(userInfo);
   return (
     <div>
       <h1>Profile</h1>
       <FaUserCircle />
-      <h2>{userData.name}</h2>
-      <p>{userData.email}</p>
+      <h2>{userInfo.name}</h2>
+      <p>{userInfo.email}</p>
     </div>
   );
 };

@@ -1,27 +1,36 @@
 import { useState, useEffect } from "react";
 
-const DropDown = ({ defaultValue, values }) => {
+const DropDown = ({ defaultValue, selections }) => {
   const [options, setOptions] = useState([]);
+  const [selected, setSelected] = useState(defaultValue);
 
   useEffect(() => {
     setOptions([]);
-    for (let i = 0; i < values.length; i++) {
+    for (let i = 0; i < selections.length; i++) {
       setOptions((prev) => [
         ...prev,
-        <option value={values[i]} key={i}>
-          {values[i]}
+        <option value={selections[i]} key={i}>
+          {selections[i]}
         </option>,
       ]);
     }
-  }, [values]);
+  }, [selections]);
 
   return (
-    <select required defaultValue={0}>
-      <option value={0} disabled hidden>
-        {defaultValue}
-      </option>
-      {...options}
-    </select>
+    <>
+      <select
+        required
+        defaultValue={0}
+        onChange={(e) => {
+          setSelected(e.target.value);
+        }}
+      >
+        <option value={0} disabled hidden>
+          {defaultValue}
+        </option>
+        {...options}
+      </select>
+    </>
   );
 };
 

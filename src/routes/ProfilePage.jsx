@@ -31,7 +31,7 @@ const ProfilePage = () => {
   return (
     <>
       <UserInfo />
-      <DropDown defaultValue={userGender.gender} values={["Male", "Female"]} />
+      <DropDown defaultValue={userGender.gender} selections={["Male", "Female"]} />
       <Calender defaultValue={userBirth.birthDate} />
 
       <button
