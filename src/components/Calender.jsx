@@ -1,5 +1,9 @@
 const Calender = () => {
-  return <div>Calender</div>;
+  return (
+    <>
+      <input type="date" />
+    </>
+  );
 };
 
 export default Calender;
