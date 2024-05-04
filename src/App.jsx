@@ -5,10 +5,12 @@ import EditProfile from "./routes/EditProfile";
 const App = () => {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<ProfilePage />} />
-        <Route path="edit-profile" element={<EditProfile />} />
-      </Routes>
+      <div className="bg-zinc-800 absolute w-full h-full text-white font-sans">
+        <Routes>
+          <Route path="/" element={<ProfilePage />} />
+          <Route path="edit-profile" element={<EditProfile />} />
+        </Routes>
+      </div>
     </>
   );
 };
