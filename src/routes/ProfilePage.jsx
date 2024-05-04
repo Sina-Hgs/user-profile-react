@@ -4,9 +4,13 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import UserInfo from "../components/UserInfo";
 import Calender from "../components/Calender";
 import DropDown from "../components/DropDown";
+import BottomSheet from "../components/BottomSheet";
+import { useState } from "react";
 
 const ProfilePage = () => {
   const Navigate = useNavigate();
+
+  const [content, setContent] = useState(null);
 
   // USER GENDER INITIAL VALUE
   const fallBackUserGender = {
@@ -45,7 +49,15 @@ const ProfilePage = () => {
       >
         Edit Profile
       </button>
-      <div>Logout</div>
+
+      <button
+        onClick={() => {
+          content ? setContent(null) : setContent(<BottomSheet />);
+        }}
+      >
+        Logout
+      </button>
+      {content}
     </>
   );
 };
