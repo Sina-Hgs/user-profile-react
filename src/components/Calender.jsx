@@ -14,7 +14,7 @@ const Calender = ({ defaultValue, labelName, notEditable }) => {
         onChange={(e) => {
           setUserBirth({ birthDate: e.target.value });
         }}
-        className="mb-2 w-full p-1 bg-inherit border-2 
+        className="mb-2 w-full p-2 bg-inherit border-2 
         rounded-md border-solid border-slate-100
         focus:bg-zinc-900
         transition-all

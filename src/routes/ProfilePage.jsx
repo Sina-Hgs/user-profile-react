@@ -40,14 +40,14 @@ const ProfilePage = () => {
       <UserInfo />
 
       <div className="mt-5 w-full flex flex-col justify-center items-center text-white">
-        <h3 className="text-sm py-1 w-full ">Gender</h3>
+        <h3 className="text-sm py-1 w-full text-slate-300">Gender</h3>
         <DropDown
           defaultValue={userGender.gender}
           selections={["Not Specified", "Male", "Female"]}
           notEditable={true}
         />
         <div className="w-full">
-          <h3 className="text-sm py-1 w-full ">Birthday</h3>
+          <h3 className="text-sm py-1 w-full text-slate-300">Birthday</h3>
           <Calender defaultValue={userBirth.birthDate} notEditable={true} />
         </div>
       </div>
