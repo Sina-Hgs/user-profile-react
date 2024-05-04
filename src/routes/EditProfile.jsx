@@ -113,7 +113,10 @@ const EditProfile = () => {
           <button
             type="submit"
             onClick={handleClick}
-            className="w-full my-12 rounded-md p-2 bg-sky-600 text-black font-semibold focus:shadow-lg focus:shadow-blue-500/50 transition-all
+            className="w-full my-12 rounded-md p-2 bg-sky-600 text-black font-semibold focus:shadow-md focus:shadow-blue-500/50 
+            hover:shadow-md 
+            hover:shadow-blue-500/50 
+            transition-all
           lg:w-[50%] lg:mb-12"
           >
             Update
