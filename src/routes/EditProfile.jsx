@@ -1,37 +1,64 @@
+import { useRef } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-import { useNavigate } from "react-router-dom";
 
 import DropDown from "../components/DropDown";
 import Calender from "../components/Calender";
 
 const EditProfile = () => {
-  const Navigate = useNavigate();
-
   // LOCAL STORAGE STATES
   const [userInfo, setUserInfo] = useLocalStorage("userInfo");
   const [userGender, setUserGender] = useLocalStorage("userGender");
   const [userBirth, setUserBirth] = useLocalStorage("userBirth");
 
-  // HANDLE CLICK FOR THE UPDATE BUTTON
+  // REFS FOR THE INPUT STATE HANDLING
+  const nameRef = useRef(userInfo.name);
+  const emailRef = useRef(userInfo.email);
+
+  // HANDLE Click FOR THE UPDATE BUTTON
   const handleClick = () => {
     setUserInfo({
-      name: "heyyy",
-      email: "example@gmail.com",
+      name: nameRef.current,
+      email: emailRef.current,
     });
-    // Navigate("/");
   };
 
   return (
-    <>
-      <h2>{userInfo.name}</h2>
-      <p>{userInfo.email}</p>
+    <form action="/">
+      <label htmlFor="name">
+        <input
+          id="name"
+          name="name"
+          required
+          type="text"
+          defaultValue={userInfo.name}
+          onChange={(e) => {
+            nameRef.current = e.target.value;
+          }}
+        />
+      </label>
+
+      <label htmlFor="email">
+        <input
+          id="email"
+          name="email"
+          required
+          type="email"
+          defaultValue={userInfo.email}
+          onChange={(e) => {
+            emailRef.current = e.target.value;
+          }}
+        />
+      </label>
+
       <DropDown
         defaultValue={userGender.gender}
         selections={["Male", "Female"]}
       />
       <Calender defaultValue={userBirth.birthDate} />
-      <button onClick={handleClick}>UpdateButton</button>
-    </>
+      <button type="submit" onClick={handleClick}>
+        UpdateButton
+      </button>
+    </form>
   );
 };
 
