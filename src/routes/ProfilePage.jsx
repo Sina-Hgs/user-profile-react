@@ -10,7 +10,7 @@ const ProfilePage = () => {
 
   // USER GENDER INITIAL VALUE
   const fallBackUserGender = {
-    gender: "Select Gender",
+    gender: "Not Specified",
   };
 
   const [userGender, setUserGender] = useLocalStorage(
@@ -33,9 +33,10 @@ const ProfilePage = () => {
       <UserInfo />
       <DropDown
         defaultValue={userGender.gender}
-        selections={["Male", "Female"]}
+        selections={["Not Specified", "Male", "Female"]}
+        notEditable={true}
       />
-      <Calender defaultValue={userBirth.birthDate} />
+      <Calender defaultValue={userBirth.birthDate} notEditable={true} />
 
       <button
         onClick={() => {

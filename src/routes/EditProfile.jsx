@@ -50,11 +50,23 @@ const EditProfile = () => {
         />
       </label>
 
-      <DropDown
-        defaultValue={userGender.gender}
-        selections={["Male", "Female"]}
-      />
-      <Calender defaultValue={userBirth.birthDate} />
+      <label htmlFor="gender">
+        <DropDown
+          defaultValue={userGender.gender}
+          selections={["Not Specified", "Male", "Female"]}
+          labelName={"gender"}
+          notEditable={false}
+        />
+      </label>
+
+      <label htmlFor="date">
+        <Calender
+          defaultValue={userBirth.birthDate}
+          labelName={"date"}
+          notEditable={false}
+        />
+      </label>
+
       <button type="submit" onClick={handleClick}>
         UpdateButton
       </button>
