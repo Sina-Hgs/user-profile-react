@@ -46,10 +46,26 @@ const BottomSheet = () => {
         </button>
       </div>
 
-      <div className={`${display} bg-blue-600`}>
-        You've been logged out and your data is removed from the local storage
-        <Link reloadDocument to={"/"} role="button" className="m-12">
-          Try the app again
+      <div
+        className={`${display} absolute bottom-1 w-[90%] height-[100%] mx-7 my-10 px-6 py-12 bg-zinc-100 rounded-2xl text-black flex flex-col justify-end items-center`}
+      >
+        <h2 className="text-green-600 font-bold text-2xl text-center py-5">
+          Logout Successful!
+        </h2>
+        <p>
+          You've been logged out and your data is removed from the local storage
+        </p>
+        <Link
+          reloadDocument
+          to={"/"}
+          role="button"
+          className="w-full mt-12 rounded-md p-2 bg-sky-600 text-black  text-center font-semibold focus:shadow-md focus:shadow-blue-500/50 
+            hover:shadow-md 
+            hover:shadow-blue-500/50 
+            transition-all
+          lg:w-[50%] lg:mb-12"
+        >
+          Try the app again!
         </Link>
       </div>
     </div>
