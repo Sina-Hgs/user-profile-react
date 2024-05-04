@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 import DropDown from "../components/DropDown";
@@ -23,54 +24,59 @@ const EditProfile = () => {
   };
 
   return (
-    <form action="/">
-      <label htmlFor="name">
-        <input
-          id="name"
-          name="name"
-          required
-          type="text"
-          defaultValue={userInfo.name}
-          onChange={(e) => {
-            nameRef.current = e.target.value;
-          }}
-        />
-      </label>
+    <>
+      <Link to={"/"} role="button">
+        Back
+      </Link>
+      <form action="/">
+        <label htmlFor="name">
+          <input
+            id="name"
+            name="name"
+            required
+            type="text"
+            defaultValue={userInfo.name}
+            onChange={(e) => {
+              nameRef.current = e.target.value;
+            }}
+          />
+        </label>
 
-      <label htmlFor="email">
-        <input
-          id="email"
-          name="email"
-          required
-          type="email"
-          defaultValue={userInfo.email}
-          onChange={(e) => {
-            emailRef.current = e.target.value;
-          }}
-        />
-      </label>
+        <label htmlFor="email">
+          <input
+            id="email"
+            name="email"
+            required
+            type="email"
+            defaultValue={userInfo.email}
+            onChange={(e) => {
+              emailRef.current = e.target.value;
+            }}
+          />
+        </label>
 
-      <label htmlFor="gender">
-        <DropDown
-          defaultValue={userGender.gender}
-          selections={["Not Specified", "Male", "Female"]}
-          labelName={"gender"}
-          notEditable={false}
-        />
-      </label>
+        <label htmlFor="gender">
+          <DropDown
+            defaultValue={userGender.gender}
+            selections={["Not Specified", "Male", "Female"]}
+            labelName={"gender"}
+            notEditable={false}
+          />
+        </label>
 
-      <label htmlFor="date">
-        <Calender
-          defaultValue={userBirth.birthDate}
-          labelName={"date"}
-          notEditable={false}
-        />
-      </label>
+        <label htmlFor="date">
+          <Calender
+            defaultValue={userBirth.birthDate}
+            labelName={"date"}
+            notEditable={false}
+          />
+        </label>
 
-      <button type="submit" onClick={handleClick}>
-        UpdateButton
-      </button>
-    </form>
+        <button type="submit" onClick={handleClick}>
+          UpdateButton
+        </button>
+      </form>
+    </>
   );
 };
 
