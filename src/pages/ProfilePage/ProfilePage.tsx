@@ -1,14 +1,15 @@
 import { FormEvent, ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "../hooks/useLocalStorage";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
-import UserInfo from "../components/UserInfo";
-import Calender from "../components/Calender";
-import DropDown from "../components/DropDown";
-import BottomSheet from "../components/BottomSheet";
+import UserInfo from "../../components/UserInfo";
+import Calender from "../../components/Calender";
+import DropDown from "../../components/DropDown";
+import BottomSheet from "./BottomSheet";
 
 import { HiOutlineUser } from "react-icons/hi2";
 import { HiOutlineLogout } from "react-icons/hi";
+import { FaPhone } from "react-icons/fa6";
 
 // USER GENDER INITIAL VALUE
 const fallBackUserGender = {
@@ -81,6 +82,24 @@ const ProfilePage = () => {
             transition-all"
             >
               Edit Profile
+            </button>
+          </div>
+
+          <div className="flex flex-row items-center justify-evenly  py-2 mb-1">
+            <FaPhone className="size-5 mr-3" />
+
+            <button
+              onClick={() => {
+                Navigate("./register");
+              }}
+              className="focus:tracking-wider focus:font-semibold
+            focus:underline
+            hover:tracking-wider
+            hover:font-semibold 
+            hover:underline underline-offset-4
+            transition-all"
+            >
+              Register
             </button>
           </div>
 

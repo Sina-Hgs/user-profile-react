@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
-import ProfilePage from "./routes/ProfilePage";
-import EditProfile from "./routes/EditProfile";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import EditProfile from "./pages/EditPage/EditProfile";
+import Register from "./pages/register/Register";
 
 const App = () => {
   return (
@@ -9,6 +10,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<ProfilePage />} />
           <Route path="edit-profile" element={<EditProfile />} />
+          <Route path="register" element={<Register />} />
         </Routes>
       </div>
     </>
