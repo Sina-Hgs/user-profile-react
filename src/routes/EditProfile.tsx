@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { ChangeEvent, FormEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -13,16 +13,28 @@ const EditProfile = () => {
   const [userGender, setUserGender] = useLocalStorage("userGender");
   const [userBirth, setUserBirth] = useLocalStorage("userBirth");
 
+  // const [nameState, setNameState] = useState(userInfo.name);
+  // const [emailState, setEmailState] = useState(userInfo.name);
+  const [formData, setFormData] = useState({
+    name: userInfo.name,
+    email: userInfo.email,
+  });
   // REFS FOR THE INPUT STATE HANDLING
-  const nameRef = useRef(userInfo.name);
-  const emailRef = useRef(userInfo.email);
+  // const nameRef = useRef(userInfo.name);
+  // const emailRef = useRef(userInfo.email);
 
   // HANDLE Click FOR THE UPDATE BUTTON
-  const handleClick = () => {
+  const onSubmit = (e: FormEvent<any>) => {
+    e.preventDefault();
+
     setUserInfo({
-      name: nameRef.current,
-      email: emailRef.current,
+      name: formData.name,
+      email: formData.email,
     });
+  };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   return (
@@ -35,7 +47,11 @@ const EditProfile = () => {
         <HiOutlineArrowLeft className="size-5 mr-3" />
         Back
       </Link>
-      <form action="/" className="relative m-auto w-full text-center">
+      <form
+        action="/"
+        className="relative m-auto w-full text-center"
+        onSubmit={(e: FormEvent<any>) => onSubmit(e)}
+      >
         <label htmlFor="name">
           <h3 className="text-sm py-1 lg:w-[50%] m-auto text-left text-slate-300 max-lg:w-full">
             Full Name
@@ -45,10 +61,9 @@ const EditProfile = () => {
             name="name"
             required
             type="text"
+            value={formData.name}
             defaultValue={userInfo.name}
-            onChange={(e) => {
-              nameRef.current = e.target.value;
-            }}
+            onChange={handleChange}
             className="mb-2 w-full p-2 bg-inherit border-2 
         rounded-md border-solid border-slate-100
         focus:bg-zinc-900
@@ -70,10 +85,9 @@ const EditProfile = () => {
             name="email"
             required
             type="email"
+            value={formData.email}
             defaultValue={userInfo.email}
-            onChange={(e) => {
-              emailRef.current = e.target.value;
-            }}
+            onChange={handleChange}
             className="mb-2 w-full p-2 bg-inherit border-2 
         rounded-md border-solid border-slate-100
         focus:bg-zinc-900
@@ -95,6 +109,9 @@ const EditProfile = () => {
             selections={["Not Specified", "Male", "Female"]}
             labelName={"gender"}
             notEditable={false}
+            onChangeHandler={(e: FormEvent<HTMLSelectElement>) => {
+              setUserGender({ gender: e.currentTarget.value });
+            }}
           />
         </label>
 
@@ -106,13 +123,16 @@ const EditProfile = () => {
             defaultValue={userBirth.birthDate}
             labelName={"date"}
             notEditable={false}
+            onChangeHandler={(e: FormEvent<HTMLInputElement>) =>
+              setUserBirth({ birthDate: e.currentTarget.value })
+            }
           />
         </label>
 
         <div>
           <button
             type="submit"
-            onClick={handleClick}
+            // onClick={handleClick}
             className="w-full my-12 rounded-md p-2 bg-sky-600 text-black font-semibold focus:shadow-md focus:shadow-blue-500/50 
             hover:shadow-md 
             hover:shadow-blue-500/50 

@@ -1,23 +1,20 @@
-import { useState, useEffect } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { FormEvent } from "react";
 
-const DropDown = ({ defaultValue, selections, labelName, notEditable }) => {
-  const [options, setOptions] = useState([]);
+type Props = {
+  defaultValue: string;
+  selections: string[];
+  labelName: string;
+  notEditable: boolean;
+  onChangeHandler: (e: FormEvent<HTMLSelectElement>) => void;
+};
 
-  const [userGender, setUserGender] = useLocalStorage("userGender");
-
-  useEffect(() => {
-    setOptions([]);
-    for (let i = 0; i < selections.length; i++) {
-      setOptions((prev) => [
-        ...prev,
-        <option value={selections[i]} key={i}>
-          {selections[i]}
-        </option>,
-      ]);
-    }
-  }, [selections]);
-
+const DropDown = ({
+  defaultValue,
+  selections,
+  labelName,
+  notEditable,
+  onChangeHandler,
+}: Props) => {
   return (
     <>
       <select
@@ -27,7 +24,7 @@ const DropDown = ({ defaultValue, selections, labelName, notEditable }) => {
         disabled={notEditable}
         defaultValue={0}
         onChange={(e) => {
-          setUserGender({ gender: e.target.value });
+          onChangeHandler(e);
         }}
         className="mb-2 w-full p-2 bg-inherit border-2 
         rounded-md border-solid border-slate-100
@@ -42,7 +39,13 @@ const DropDown = ({ defaultValue, selections, labelName, notEditable }) => {
         <option value={0} disabled hidden>
           {defaultValue}
         </option>
-        {...options}
+        {selections.map((option: string, index: number) => {
+          return (
+            <option value={option} key={index}>
+              {option}
+            </option>
+          );
+        })}
       </select>
     </>
   );

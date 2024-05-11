@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, ReactElement, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -10,29 +10,27 @@ import BottomSheet from "../components/BottomSheet";
 import { HiOutlineUser } from "react-icons/hi2";
 import { HiOutlineLogout } from "react-icons/hi";
 
+// USER GENDER INITIAL VALUE
+const fallBackUserGender = {
+  gender: "Not Specified",
+};
+
+// USER BIRTH-DATE INITIAL VALUE
+const fallBackUserBirth = {
+  birthDate: "2020-01-01",
+};
 const ProfilePage = () => {
   const Navigate = useNavigate();
 
-  const [content, setContent] = useState(null);
-
-  // USER GENDER INITIAL VALUE
-  const fallBackUserGender = {
-    gender: "Not Specified",
-  };
-
-  const [userGender, setUserGender] = useLocalStorage(
-    "userGender",
-    fallBackUserGender
-  );
-
-  // USER BIRTH-DATE INITIAL VALUE
-  const fallBackUserBirth = {
-    birthDate: "2020-01-01",
-  };
+  const [content, setContent] = useState<ReactElement | null>(null);
 
   const [userBirth, setUserBirth] = useLocalStorage(
     "userBirth",
     fallBackUserBirth
+  );
+  const [userGender, setUserGender] = useLocalStorage(
+    "userGender",
+    fallBackUserGender
   );
 
   return (
@@ -49,6 +47,9 @@ const ProfilePage = () => {
             selections={["Not Specified", "Male", "Female"]}
             notEditable={true}
             labelName={userGender.gender}
+            onChangeHandler={(e: FormEvent<HTMLSelectElement>) => {
+              setUserGender({ gender: e.currentTarget.value });
+            }}
           />
           <div className="mt-2 w-full flex flex-col justify-center items-center text-white lg:items-center lg:text-base">
             <h3 className="text-sm py-1 lg:w-[50%] text-slate-300 max-lg:w-full lg:text-base">
@@ -58,6 +59,9 @@ const ProfilePage = () => {
               defaultValue={userBirth.birthDate}
               notEditable={true}
               labelName={userBirth.birthDate}
+              onChangeHandler={(e: FormEvent<HTMLInputElement>) =>
+                setUserBirth({ birthDate: e.currentTarget.value })
+              }
             />
           </div>
         </div>

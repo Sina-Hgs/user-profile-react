@@ -1,7 +1,18 @@
-import useLocalStorage from "../hooks/useLocalStorage";
+import { FormEvent } from "react";
 
-const Calender = ({ defaultValue, labelName, notEditable }) => {
-  const [userBirth, setUserBirth] = useLocalStorage("userBirth");
+type Props = {
+  defaultValue: string;
+  labelName: string;
+  notEditable: boolean;
+  onChangeHandler: (e: FormEvent<HTMLInputElement>) => void;
+};
+
+const Calender = ({
+  defaultValue,
+  labelName,
+  notEditable,
+  onChangeHandler,
+}: Props) => {
   return (
     <>
       <input
@@ -12,7 +23,7 @@ const Calender = ({ defaultValue, labelName, notEditable }) => {
         defaultValue={defaultValue}
         readOnly={notEditable}
         onChange={(e) => {
-          setUserBirth({ birthDate: e.target.value });
+          onChangeHandler(e);
         }}
         className="mb-2 w-full p-2 bg-inherit border-2 
         rounded-md border-solid border-slate-100
