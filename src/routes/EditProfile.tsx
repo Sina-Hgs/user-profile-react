@@ -19,6 +19,12 @@ const EditProfile = () => {
     name: userInfo.name,
     email: userInfo.email,
   });
+
+  const [fieldValidationErrors, setFieldValidationErrors] = useState({
+    name: "",
+    email: "",
+  });
+
   // REFS FOR THE INPUT STATE HANDLING
   // const nameRef = useRef(userInfo.name);
   // const emailRef = useRef(userInfo.email);
@@ -32,7 +38,29 @@ const EditProfile = () => {
       email: formData.email,
     });
   };
+
+  // FORM VALIDATION FUNCTION
+  const validateForm = (inputName: string, value: string) => {
+    let nameValid;
+    let emailValid;
+
+    switch (inputName) {
+      case "name":
+        nameValid = /^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$/.test(value);
+        console.log(nameValid);
+        fieldValidationErrors.name = nameValid ? "" : " is invalid";
+        break;
+      case "email":
+        emailValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
+        console.log(emailValid);
+        // fieldValidationErrors.email = emailValid ? "" : " is invalid";
+        break;
+    }
+  };
+
+  // HANDLE CHANGE
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    validateForm(e.target.name, e.target.value);
     const { value, name } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
