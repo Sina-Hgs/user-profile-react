@@ -48,12 +48,17 @@ const ProfilePage = () => {
             defaultValue={userGender.gender}
             selections={["Not Specified", "Male", "Female"]}
             notEditable={true}
+            labelName={userGender.gender}
           />
           <div className="mt-2 w-full flex flex-col justify-center items-center text-white lg:items-center lg:text-base">
             <h3 className="text-sm py-1 lg:w-[50%] text-slate-300 max-lg:w-full lg:text-base">
               Birthday
             </h3>
-            <Calender defaultValue={userBirth.birthDate} notEditable={true} />
+            <Calender
+              defaultValue={userBirth.birthDate}
+              notEditable={true}
+              labelName={userBirth.birthDate}
+            />
           </div>
         </div>
 
