@@ -1,4 +1,4 @@
-import Input from "./Input";
+import Input from "../../components/Input";
 
 const Login = () => {
   const phoneRegex = /^(\+\d{1,2}\s?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;

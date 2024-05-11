@@ -10,7 +10,6 @@ const Input = ({ inputName, type, phoneRegex }: Props) => {
   const [formData, setFormData] = useState<string>("");
   const [fieldValidationErrors, setFieldValidationErrors] = useState("");
 
-  console.log(phoneRegex);
   // FORM VALIDATION FUNCTION
   const validateForm = (value: string) => {
     let isValid = phoneRegex.test(value);
