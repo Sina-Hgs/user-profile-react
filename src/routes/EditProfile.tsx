@@ -48,20 +48,22 @@ const EditProfile = () => {
       case "name":
         nameValid = /^[a-zA-Z]{4,}(?: [a-zA-Z]+){0,2}$/.test(value);
         console.log(nameValid);
-        fieldValidationErrors.name = nameValid ? "" : " is invalid";
+        fieldValidationErrors.name = nameValid
+          ? ""
+          : "The username is invalid. Please Enter you first and last name";
         break;
       case "email":
         emailValid = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i.test(value);
         console.log(emailValid);
-        // fieldValidationErrors.email = emailValid ? "" : " is invalid";
+        fieldValidationErrors.email = emailValid ? "" : "The Email is invalid.";
         break;
     }
   };
 
   // HANDLE CHANGE
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    validateForm(e.target.name, e.target.value);
     const { value, name } = e.target;
+    validateForm(name, value);
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -93,15 +95,16 @@ const EditProfile = () => {
             defaultValue={userInfo.name}
             onChange={handleChange}
             className="mb-2 w-full p-2 bg-inherit border-2 
-        rounded-md border-solid border-slate-100
-        focus:bg-zinc-900
-        focus:shadow-2xl
-        hover:bg-zinc-900
+            rounded-md border-solid border-slate-100
+            focus:bg-zinc-900
+            focus:shadow-2xl
+            hover:bg-zinc-900
         hover:shadow-2xl
         transition-all
         lg:w-[50%]
         "
           />
+          <p>{fieldValidationErrors.name}</p>
         </label>
 
         <label htmlFor="email">
@@ -126,6 +129,7 @@ const EditProfile = () => {
         lg:w-[50%]
         "
           />
+          <p>{fieldValidationErrors.email}</p>
         </label>
 
         <label htmlFor="gender">
