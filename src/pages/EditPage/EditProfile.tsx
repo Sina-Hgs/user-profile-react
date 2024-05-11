@@ -20,11 +20,6 @@ const EditProfile = () => {
     email: userInfo.email,
   });
 
-  const [fieldValidationErrors, setFieldValidationErrors] = useState({
-    name: "",
-    email: "",
-  });
-
   // REFS FOR THE INPUT STATE HANDLING
   // const nameRef = useRef(userInfo.name);
   // const emailRef = useRef(userInfo.email);
@@ -39,6 +34,10 @@ const EditProfile = () => {
     });
   };
 
+  const [fieldValidationErrors, setFieldValidationErrors] = useState({
+    name: "",
+    email: "",
+  });
   // FORM VALIDATION FUNCTION
   const validateForm = (inputName: string, value: string) => {
     let nameValid;

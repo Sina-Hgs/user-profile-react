@@ -1,5 +1,15 @@
+import { useState } from "react";
+import Login from "./Login";
+
 const Register = () => {
-  return <div>Register</div>;
+  const [fieldValidationErrors, setFieldValidationErrors] = useState({
+    phone: "",
+  });
+  return (
+    <div className="flex flex-col relative w-[80%] h-[100%] py-5 px-4 m-auto justify-start items-left">
+      <Login />
+    </div>
+  );
 };
 
 export default Register;
