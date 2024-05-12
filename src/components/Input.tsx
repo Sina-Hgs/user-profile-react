@@ -1,30 +1,13 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 
 type Props = {
   inputName: string;
   type: string;
-  phoneRegex: RegExp;
+  formData: string | number;
+  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
-const Input = ({ inputName, type, phoneRegex }: Props) => {
-  const [formData, setFormData] = useState<string>("");
-  const [fieldValidationErrors, setFieldValidationErrors] = useState("");
-
-  // FORM VALIDATION FUNCTION
-  const validateForm = (value: string) => {
-    let isValid = phoneRegex.test(value);
-    console.log(isValid);
-    let errorMessage = isValid ? "" : "The input is invalid.";
-    setFieldValidationErrors(errorMessage);
-  };
-
-  // HANDLE CHANGE
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    validateForm(value);
-    setFormData(value);
-  };
-
+const Input = ({ inputName, type, formData, handleChange }: Props) => {
   return (
     <label htmlFor={inputName}>
       <h3 className="text-sm py-1 lg:w-[50%] m-auto text-left text-slate-300 max-lg:w-full">
@@ -47,7 +30,7 @@ const Input = ({ inputName, type, phoneRegex }: Props) => {
         lg:w-[50%]
         "
       />
-      <p>{fieldValidationErrors}</p>
+      
     </label>
   );
 };

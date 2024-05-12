@@ -1,6 +1,7 @@
 import Button from "../../components/Button";
+import { handleCountUp } from "./types";
 
-const Question = ({ handleCountUp }: any) => {
+const Question = ({ handleCountUp }: handleCountUp) => {
   return (
     <div>
       Question

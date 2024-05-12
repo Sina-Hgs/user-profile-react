@@ -1,6 +1,7 @@
 import Button from "../../components/Button";
+import { handleCountUp } from "./types";
 
-const PinCode = ({ handleCountUp }: any) => {
+const PinCode = ({ handleCountUp }: handleCountUp) => {
   return (
     <div>
       PinCode
